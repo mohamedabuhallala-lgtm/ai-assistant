@@ -1,0 +1,33 @@
+import requests
+
+# 1. اكتب رابط الـ API الخاص بك بين العلامتين
+API_URL = "https://api.example.com/v1/chat/completions"
+
+# 2. اكتب مفتاح API الخاص بك هنا
+API_KEY = "ضع_المفتاح_هنا"
+
+# 3. اكتب اسم النموذج المجاني الذي تريد تجريبية
+MODEL_NAME = "اسم_النموذج"
+
+# تجهيز الطلب لإرساله للذكاء الاصطناعي
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+
+data = {
+    "model": MODEL_NAME,
+    "messages": [
+        {"role": "user", "content": "مرحباً، أرسل لي رسالة ترحيبية قصيرة."}
+    ]
+}
+
+# إرسال الأمر
+response = requests.post(API_URL, headers=headers, json=data)
+
+# عرض النتيجة
+if response.status_code == 200:
+    print("رد الذكاء الاصطناعي:")
+    print(response.json()["choices"][0]["message"]["content"])
+else:
+    print("خطأ في الاتصال:", response.status_code)
