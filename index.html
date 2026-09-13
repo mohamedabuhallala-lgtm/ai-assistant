@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق التسجيل والقبول</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 85%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 { color: #333; margin-bottom: 20px; }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #764ba2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        button:hover { background-color: #5a3780; }
+        .footer-text { margin-top: 15px; font-size: 14px; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>بوابة التسجيل والقبول 🎓</h2>
+        <p style="color: #666; margin-bottom: 20px;">أهلاً بك، يرجى إدخال بياناتك</p>
+        
+        <input type="text" placeholder="الاسم الرباعي" required>
+        <input type="tel" placeholder="رقم الهاتف" required>
+        
+        <!-- هذا الزر سنقوم لاحقاً بربطه بنماذج الذكاء الاصطناعي (API) -->
+        <button onclick="alert('تم إرسال البيانات بنجاح!')">تسجيل الدخول</button>
+        
+        <p class="footer-text">مدعوم بتقنيات الذكاء الاصطناعي</p>
+    </div>
+
+</body>
+</html>
 
