@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المساعد الذكي</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f7f6; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .app-container { 
+            background: white; 
+            width: 100%; 
+            max-width: 400px; 
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+        }
+        h2 { text-align: center; color: #333; margin-top: 0; }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 15px 0; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-size: 16px;
+        }
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            background-color: #ff7b00; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: bold;
+            cursor: pointer; 
+        }
+        button:active { background-color: #e66a00; }
+        #result-box { 
+            margin-top: 20px; 
+            padding: 15px; 
+            background-color: #e9ecef; 
+            border-radius: 8px; 
+            min-height: 60px; 
+            color: #444;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h2>مساعد الهاتف الذكي</h2>
+        <p>أدخل النص لمعالجته عبر الذكاء الاصطناعي:</p>
+        
+        <input type="text" id="userInput" placeholder="اكتب هنا...">
+        <button onclick="sendData()">إرسال للأداة</button>
+        
+        <div id="result-box">النتيجة ستظهر هنا...</div>
+    </div>
+
+    <script>
+        async function sendData() {
+            const text = document.getElementById("userInput").value;
+            const resultBox = document.getElementById("result-box");
+            
+            if (!text) {
+                resultBox.innerText = "الرجاء كتابة نص أولاً.";
+                return;
+            }
+
+            resultBox.innerText = "جاري المعالجة... الرجاء الانتظار.";
+
+            // ⚠️ هام: ضع رابط Gradio الخاص بك بين علامتي التنصيص أدناه
+            // تأكد من ترك كلمة /api/predict في نهاية الرابط كما هي
+            const apiUrl = https://08eb28562d549e7507.gradio.live/; 
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ data: [text] })
+                });
+                
+                const json = await response.json();
+                resultBox.innerText = json.data[0];
+            } catch (error) {
+                resultBox.innerText = "حدث خطأ في الاتصال. تأكد من أن الرابط الذي وضعته يعمل.";
+            }
+        }
+    </script>
+
+</body>
+</html>
